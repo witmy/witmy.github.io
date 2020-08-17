@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>java23种设计模式—— 二、单例模式 | Coder MY</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+         var _hmt = _hmt || [];
+          (function() {
+          var hm = document.createElement("script");
+           hm.src = "https://hm.baidu.com/hm.js?d4f243693dbfd2a57c866295005663e3";
+           var s = document.getElementsByTagName("script")[0];
+           s.parentNode.insertBefore(hm, s);
+          })();
+      </script>
+    <meta name="description" content="我有一扇金门朝向东方">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="preload" href="/assets/css/0.styles.a66b2b1a.css" as="style"><link rel="preload" href="/assets/js/app.fb80f49e.js" as="script"><link rel="preload" href="/assets/js/4.fb13b2f0.js" as="script"><link rel="preload" href="/assets/js/1.91705b1a.js" as="script"><link rel="preload" href="/assets/js/16.ffdbc432.js" as="script"><link rel="preload" href="/assets/js/12.94cbd312.js" as="script"><link rel="prefetch" href="/assets/js/10.c5bb13d6.js"><link rel="prefetch" href="/assets/js/11.980358da.js"><link rel="prefetch" href="/assets/js/13.827c2f63.js"><link rel="prefetch" href="/assets/js/14.0fa9046b.js"><link rel="prefetch" href="/assets/js/15.d7245fef.js"><link rel="prefetch" href="/assets/js/17.3f4fcbe8.js"><link rel="prefetch" href="/assets/js/18.472b54d2.js"><link rel="prefetch" href="/assets/js/19.1e134f25.js"><link rel="prefetch" href="/assets/js/2.ee77c428.js"><link rel="prefetch" href="/assets/js/20.de64c21e.js"><link rel="prefetch" href="/assets/js/21.4ca38f71.js"><link rel="prefetch" href="/assets/js/22.f7ed22ff.js"><link rel="prefetch" href="/assets/js/23.7a59def5.js"><link rel="prefetch" href="/assets/js/24.89a51e29.js"><link rel="prefetch" href="/assets/js/25.ee65d9cd.js"><link rel="prefetch" href="/assets/js/26.9ba923c3.js"><link rel="prefetch" href="/assets/js/27.5ec95fbf.js"><link rel="prefetch" href="/assets/js/28.121de2c2.js"><link rel="prefetch" href="/assets/js/29.de5619ee.js"><link rel="prefetch" href="/assets/js/30.85beb005.js"><link rel="prefetch" href="/assets/js/5.206667ac.js"><link rel="prefetch" href="/assets/js/6.76fc0160.js"><link rel="prefetch" href="/assets/js/7.846f5e9c.js"><link rel="prefetch" href="/assets/js/8.57ddca28.js"><link rel="prefetch" href="/assets/js/9.7cdabb3f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a66b2b1a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-73b6f1b4><div data-v-73b6f1b4><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-73b6f1b4 data-v-73b6f1b4><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-68ced994 data-v-73b6f1b4 data-v-73b6f1b4><h3 class="title" style="display:none;" data-v-68ced994 data-v-68ced994>Coder MY</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-68ced994 data-v-68ced994><input type="password" value="" data-v-68ced994> <span data-v-68ced994>Konck! Knock!</span> <button data-v-68ced994>OK</button></label></div> <div class="hide" data-v-73b6f1b4><header class="navbar" data-v-73b6f1b4><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo_my.png" alt="Coder MY" class="logo"></a> <div class="links"><div class="color-button"><i class="iconfont reco-moon"></i> <!----></div> <div class="search-box" style="border-radius:100px;"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/设计模式/" class="nav-link"><i class="iconfont undefined"></i>
+  设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/categories/转载/" class="nav-link"><i class="iconfont undefined"></i>
+  转载
+</a></li><li class="dropdown-item"><!----> <a href="/categories/随笔/" class="nav-link"><i class="iconfont undefined"></i>
+  随笔
+</a></li><li class="dropdown-item"><!----> <a href="/categories/脚本/" class="nav-link"><i class="iconfont undefined"></i>
+  脚本
+</a></li><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="iconfont undefined"></i>
+  后端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  归档
+</a></div><div class="nav-item"><a href="/friend/" class="nav-link"><i class="iconfont reco-friendLink"></i>
+  友情链接
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-link"></i>
+      联系我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/witmy" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/witmy" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-73b6f1b4></div> <aside class="sidebar" data-v-73b6f1b4><div class="personal-info-wrapper" data-v-4f094d68 data-v-73b6f1b4><img src="/avatar.png" alt="author-avatar" class="personal-img" data-v-4f094d68> <h3 class="name" data-v-4f094d68>
+    Coder MY
+  </h3> <div class="num" data-v-4f094d68><div data-v-4f094d68><h3 data-v-4f094d68>15</h3> <h6 data-v-4f094d68>文章</h6></div> <div data-v-4f094d68><h3 data-v-4f094d68>9</h3> <h6 data-v-4f094d68>标签</h6></div></div> <div class="social-info" data-v-4f094d68><a href="https://gitee.com/mydemy" data-v-4f094d68><i class="iconfont reco-mayun" style="font-size: 24px" data-v-4f094d68></i></a> <a href="https://github.com/codermy00" data-v-4f094d68><i class="iconfont reco-github" data-v-4f094d68></i></a> <a href="tencent://message/?uin=2849823368&Site=http://start-here.cn&Menu=yes" data-v-4f094d68><i class="iconfont reco-qq" data-v-4f094d68></i></a> <i class="iconfont reco-wechat" data-v-4f094d68></i> <a href="mailto:2849823368@qq.com" data-v-4f094d68><i class="iconfont reco-mail" data-v-4f094d68></i></a></div> <hr data-v-4f094d68></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/设计模式/" class="nav-link"><i class="iconfont undefined"></i>
+  设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/categories/转载/" class="nav-link"><i class="iconfont undefined"></i>
+  转载
+</a></li><li class="dropdown-item"><!----> <a href="/categories/随笔/" class="nav-link"><i class="iconfont undefined"></i>
+  随笔
+</a></li><li class="dropdown-item"><!----> <a href="/categories/脚本/" class="nav-link"><i class="iconfont undefined"></i>
+  脚本
+</a></li><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="iconfont undefined"></i>
+  后端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  归档
+</a></div><div class="nav-item"><a href="/friend/" class="nav-link"><i class="iconfont reco-friendLink"></i>
+  友情链接
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-link"></i>
+      联系我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/witmy" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/witmy" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-mayun"></i>
+  Gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-68ced994 data-v-73b6f1b4><h3 class="title" style="display:none;" data-v-68ced994 data-v-68ced994>java23种设计模式—— 二、单例模式</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-68ced994 data-v-68ced994><input type="password" value="" data-v-68ced994> <span data-v-68ced994>Konck! Knock!</span> <button data-v-68ced994>OK</button></label></div> <div data-v-73b6f1b4><main class="page"><div class="page-title" style="display:none;"><h1>java23种设计模式—— 二、单例模式</h1> <hr> <div data-v-35c80f55><i class="iconfont reco-account" data-v-35c80f55><span data-v-35c80f55>Coder MY</span></i> <i class="iconfont reco-date" data-v-35c80f55><span data-v-35c80f55>2020-06-17 15:28:14</span></i> <i class="iconfont reco-eye" data-v-35c80f55><span id="/blogs/java/2020/Design%20Pattern/Design2Singleton.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-35c80f55><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <i class="iconfont reco-tag tags" data-v-35c80f55><span class="tag-item" data-v-35c80f55>Java</span><span class="tag-item" data-v-35c80f55>设计模式</span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><h1 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h1> <p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。<br>
+注意：</p> <ul><li>1、单例类只能有一个实例。</li> <li>2、单例类必须自己创建自己的唯一实例。</li> <li>3、单例类必须给所有其他对象提供这一实例。</li></ul> <h1 id="实现方式"><a href="#实现方式" class="header-anchor">#</a> 实现方式</h1> <h2 id="饿汉式单例（静态常量，线程安全）"><a href="#饿汉式单例（静态常量，线程安全）" class="header-anchor">#</a> 饿汉式单例（静态常量，线程安全）</h2> <p>顾名思义，饿汉式单例它很“饿”，所以一开始就创建了唯一但单例实例，但如果你没有使用过这个实例，就会造成内存的浪费</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+* 饿汉式单例
+ * 优点：简单，在类装载时就完成了实例化，避免了线程同步问题，线程安全
+ * 缺点：由于这个类已经完成了实例化，如果从始至终都没有用过这个实例，就会造成内存的浪费
+  */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest01</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Signleton</span> instance1<span class="token operator">=</span> <span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Signleton</span> instance2 <span class="token operator">=</span> <span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance1<span class="token operator">==</span>instance2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance1<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance2<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Signleton</span><span class="token punctuation">{</span>
+    <span class="token comment">//1、构造器私有化,外部无法通过new新建</span>
+    <span class="token keyword">private</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token comment">//2、内部创建对象实例</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//3、提供一个公有的静态方法，返回实例对象</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>输出结果</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token boolean">true</span>
+<span class="token number">1163157884</span>
+<span class="token number">1163157884</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>可以看到输出的是同一个实例</p> <h2 id="饿汉式单例（静态代码块，线程安全）"><a href="#饿汉式单例（静态代码块，线程安全）" class="header-anchor">#</a> 饿汉式单例（静态代码块，线程安全）</h2> <p>和之前的方式类似，只不过将类实例化的过程放在了静态代码块中，也就是类装载的时候，</p> <p>就执行静态代码块中的代码，优缺点和之前一样</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 和之前的方式类似，只不过将类实例化的过程放在了静态代码块中，也就是类装载的时候，
+ * 就执行静态代码块中的代码，优缺点和之前一样
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest02</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Signleton</span> instance1<span class="token operator">=</span> <span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Signleton</span> instance2 <span class="token operator">=</span> <span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance1<span class="token operator">==</span>instance2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance1<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance2<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Signleton</span><span class="token punctuation">{</span>
+    <span class="token comment">//1、构造器私有化,外部无法通过new新建</span>
+    <span class="token keyword">private</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">//2、内部创建对象实例</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> instance<span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token punctuation">{</span><span class="token comment">//静态代码块种，创建单例对象</span>
+        instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//3、提供一个公有的静态方法，返回实例对象</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><p>输出</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token boolean">true</span>
+<span class="token number">1163157884</span>
+<span class="token number">1163157884</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="懒汉式（线程不安全）"><a href="#懒汉式（线程不安全）" class="header-anchor">#</a> 懒汉式（线程不安全）</h2> <p>同样，顾名思义，懒汉式单例它很懒。只有在你用到它时，它才会创建一个实例。</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 饿汉式-线程不安全
+ * 优点：起到了懒加载的效果，但是只能在单线程下使用
+ * 如果在多线程下，如果一个线程进入了if判断语句块，
+ * 还没来得及向下执行，另一个线程也进入这个判断语句，就会产生多个实例（违背单例模式），
+ * 实际开发中，不要使用这种方式
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest03</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span><span class="token number">10</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Signleton</span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> instance<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">//提供一个静态的公有方法，当调用方法时，才去创建instance</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>instance <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//如果为空再去创建对象</span>
+            instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><p>输出</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">546405844</span>
+<span class="token number">135417039</span>
+<span class="token number">135417039</span>
+<span class="token number">802181073</span>
+<span class="token number">135417039</span>
+<span class="token number">135417039</span>
+<span class="token number">135417039</span>
+<span class="token number">802181073</span>
+<span class="token number">135417039</span>
+<span class="token number">135417039</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>这里我选了个比较极端的情况，如果你的电脑配置比较好，可能运行几次结果都是符合单例模式的。</p> <h2 id="懒汉式（同步方法，线程安全）"><a href="#懒汉式（同步方法，线程安全）" class="header-anchor">#</a> 懒汉式（同步方法，线程安全）</h2> <p>上面方法之所以会存在线程不安全的情况，是因为多线程情况下，可能会有多条线程同时判断单例是否创建。那么要解决这个问题 ，只需要同步getInstance()方法</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 解决了线程不安全的问题
+ * 但是大大降低了效率 每个线程想获得实例的时候，执行getInstance（）方法都要进行同步
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest04</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span><span class="token number">10</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Signleton</span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> instance<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token comment">//提供一个静态的公有方法，当调用方法时，才去创建instance</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> <span class="token class-name">Signleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>instance <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//如果为空再去创建对象</span>
+            instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>结果</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+<span class="token number">802181073</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>但是，synchronized是一个很重量的同步锁，而我们每次执行getInstance()时都会进行同步，极其影响效率</p> <h2 id="懒汉式（双重检查，线程安全）"><a href="#懒汉式（双重检查，线程安全）" class="header-anchor">#</a> 懒汉式（双重检查，线程安全）</h2> <p>双检锁，又叫双重校验锁，综合了懒汉式和饿汉式两者的优缺点整合而成。看上面代码实现中，特点是在synchronized关键字内外都加了一层 if 条件判断，这样既保证了线程安全，又比直接上锁提高了执行效率，还节省了内存空间</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 懒汉模式-双重检查
+ * 进行了两次if判断检查，这样就保证线程安全了
+ * 通过判断是否为空，来确定是否 需要再次实例化
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest05</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span><span class="token number">10</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Signleton</span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> <span class="token class-name">Signleton</span> instance<span class="token punctuation">;</span><span class="token comment">//volatile保证可见性</span>
+    <span class="token keyword">private</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">//提供一个静态的公有方法，加入双重检查代码，解决线程安全问题，同时解决懒加载问题</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><p>运行结果</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>推荐使用</p> <h2 id="静态内部类（线程安全）"><a href="#静态内部类（线程安全）" class="header-anchor">#</a> 静态内部类（线程安全）</h2> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 静态内部类实现单例模式
+ * 该方法采用了类装载机制来保证初始化实例时只有一个线程
+ * 静态内部类在Signleton类被装载时并不会立即实例化，而是需要实例化时，才会装载SignletonInstance类
+ * 类的静态属性只会在第一次加载类的时候初始化
+ * 避免了线程不安全，利用静态内部类实现懒加载，效率高
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest07</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span><span class="token number">10</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Signleton</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Signleton</span><span class="token punctuation">{</span>
+    <span class="token comment">//构造器私有</span>
+    <span class="token keyword">private</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">//静态内部类，该类中有一个静态属性Signleton</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">SignletonInstance</span><span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Signleton</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Signleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//提供一个静态的公有方法，直接返回SignletonInstance.instance</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Signleton</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">SignletonInstance</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><p>结果</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+<span class="token number">79372097</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>这种方式较为简单，推荐使用</p> <h2 id="枚举-线程安全"><a href="#枚举-线程安全" class="header-anchor">#</a> 枚举(线程安全)</h2> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * @author codermy
+ * @createTime 2020/5/14
+ * 枚举方法实现单例模式
+ * 借助jdk1.5中添加的枚举类来实现单例模式，
+ * 不仅能避免多线程同步问题，而且还能防止反序列化重新创建新对象
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingletonTest08</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Singleton</span> singleton <span class="token operator">=</span> <span class="token class-name">Singleton</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">;</span>
+        singleton<span class="token punctuation">.</span><span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span><span class="token number">10</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Singleton</span><span class="token punctuation">.</span>INSTANCE<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">enum</span> <span class="token class-name">Singleton</span><span class="token punctuation">{</span>
+    INSTANCE<span class="token punctuation">;</span><span class="token comment">//属性</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;ok&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>结果</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>ok
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+<span class="token number">858497792</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>可以看出，枚举实现单例模式，最为简洁，较为推荐。但是正是因为它简洁，导致可读性较差</p></div> <footer class="page-edit" style="display:none;"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">7/18/2020, 8:09:14 PM</span></div></footer> <!----> <!----> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-3fb51744><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#饿汉式单例（静态常量，线程安全）" class="sidebar-link" data-v-3fb51744>饿汉式单例（静态常量，线程安全）</a></li><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#饿汉式单例（静态代码块，线程安全）" class="sidebar-link" data-v-3fb51744>饿汉式单例（静态代码块，线程安全）</a></li><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#懒汉式（线程不安全）" class="sidebar-link" data-v-3fb51744>懒汉式（线程不安全）</a></li><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#懒汉式（同步方法，线程安全）" class="sidebar-link" data-v-3fb51744>懒汉式（同步方法，线程安全）</a></li><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#懒汉式（双重检查，线程安全）" class="sidebar-link" data-v-3fb51744>懒汉式（双重检查，线程安全）</a></li><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#静态内部类（线程安全）" class="sidebar-link" data-v-3fb51744>静态内部类（线程安全）</a></li><li class="level-2" data-v-3fb51744><a href="/blogs/java/2020/Design%20Pattern/Design2Singleton.html#枚举-线程安全" class="sidebar-link" data-v-3fb51744>枚举(线程安全)</a></li></ul></main> <footer data-v-c2730140><div class="bg" style="background-image:url(/assets/img/home-bg.cf2212b4.jpg);" data-v-c2730140></div> <div class="footer-wrap" data-v-c2730140><div class="copyright" data-v-c2730140>©2019 - 2020 By Coder MY</div> <div class="framework-info" data-v-c2730140><span data-v-c2730140>Power by</span> <a href="https://vuepress.vuejs.org/zh/" rel="noopener" target="_blank" data-v-c2730140><span style="color: #3EAF7C" data-v-c2730140>Vuepress</span></a>
+      &amp;
+      <span data-v-c2730140><a href="http://beian.miit.gov.cn/" style="font-size:14px;color: #3EAF7C" data-v-c2730140>苏ICP备19068567号</a></span></div></div></footer></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-44bd5a18 data-v-44bd5a18><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-44bd5a18><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-44bd5a18></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-44bd5a18></path></svg></div><!----><APlayer audio="" fixed="true" mini="true" theme="#f9bcdd" loop="loop" order="random" preload="auto" volume="0.1" mutex="true" lrc-type="0" list-folded="true" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer></div></div>
+    <script src="/assets/js/app.fb80f49e.js" defer></script><script src="/assets/js/4.fb13b2f0.js" defer></script><script src="/assets/js/1.91705b1a.js" defer></script><script src="/assets/js/16.ffdbc432.js" defer></script><script src="/assets/js/12.94cbd312.js" defer></script>
+  </body>
+</html>
